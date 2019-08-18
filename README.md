@@ -71,7 +71,7 @@ This is just overview. You are able to add any type of tag attribute.
 
 | name        | type    | Required | Description                                                     |
 |-------------|---------|----------|-----------------------------------------------------------------|
-| test        | RegExp  | yes      | RegExp to search for a file                                     |
+| test        | RegExp  | yes      | RegExp to search for a files                                     |
 | tagName     | String  | yes      | The name of the tag to be created                               |
 | rel         | String  | no       | "rel" attribute                                                 |
 | as          | String  | no       | "as" attribute                                                  |
