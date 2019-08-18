@@ -1,0 +1,15 @@
+{
+  "name": "html-webpack-static-assets-plugin",
+  "version": "0.0.1",
+  "description": "HtmlWebpackPlugin extenstion that allows you to add assets to genereted html file.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DG",
+  "license": "MIT",
+  "dependencies": {
+    "html-webpack-plugin": "^4.0.0-beta.8",
+    "webpack": "^4.39.2"
+  }
+}
