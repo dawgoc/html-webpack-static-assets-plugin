@@ -1,4 +1,3 @@
-WIP: to be published soon. Test in progress. 
 <h2 align="center">Install</h2>
 
 ```bash
@@ -9,13 +8,13 @@ WIP: to be published soon. Test in progress.
   yarn add --dev html-webpack-static-assets-plugin
 ```
 
-
 This is an extenstion of [HtmlWebpackPlugin](http://webpack.js.org/) (version 4+ required!) that allows you to extend a list of tags (head and body) created by HtmlWebpackPlugin.
 This plugin needs to be added after HtmlWebpackPlugin.
 
 F.E preload fonts with a hashes in filename.
 
 **webpack.config.js**
+
 ```js
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackStaticAssetsPlugin = require("html-webpack-static-assets-plugin");
@@ -59,23 +58,20 @@ This will generate a file `index.html`:
 
 <h2 align="center">Options</h2>
 
-
 | name     | type  | Default | Description                                |
-|----------|-------|---------|--------------------------------------------|
+| -------- | ----- | ------- | ------------------------------------------ |
 | bodyTags | array | []      | A list of tags to be added to the body tag |
-| headTags | array | []      | A list of tags to be added to the head tag |    
-
+| headTags | array | []      | A list of tags to be added to the head tag |
 
 <h2 align="center">Single Tag Options</h2>
 
-This is just overview. You are able to add any type of tag attribute. 
+This is just overview. You are able to add any type of tag attribute.
 
 | name        | type    | Required | Description                                                     |
-|-------------|---------|----------|-----------------------------------------------------------------|
-| test        | RegExp  | yes      | RegExp to search for a files                                     |
+| ----------- | ------- | -------- | --------------------------------------------------------------- |
+| test        | RegExp  | yes      | RegExp to search for a files                                    |
 | tagName     | String  | yes      | The name of the tag to be created                               |
 | rel         | String  | no       | "rel" attribute                                                 |
 | as          | String  | no       | "as" attribute                                                  |
 | type        | String  | no       | "type" attribute ([.ext] will be converted to a file extension) |
 | crossorigin | Boolean | no       | "crossorigin" attribute                                         |
-
