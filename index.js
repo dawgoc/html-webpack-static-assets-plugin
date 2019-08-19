@@ -1,5 +1,4 @@
-
-'use strict';
+"use strict";
 
 class HtmlWebpackStaticAssetsPlugin {
   constructor(htmlWebpackPlugin, options) {
@@ -16,44 +15,68 @@ class HtmlWebpackStaticAssetsPlugin {
   }
 
   apply(compiler) {
-
     compiler.hooks.compilation.tap(
       "HtmlWebpackStaticAssetsPlugin",
       compilation => {
-        this.htmlWebpackPlugin.getHooks(compilation).alterAssetTagGroups.tapAsync(
-        "HtmlWebpackStaticAssetsPlugin",
-          (data, cb) => {
-            const { headTags, bodyTags } = this.options;
+        if (!this.htmlWebpackPlugin) {
+          this.throwError(
+            "Provide HtmlWebpackPlugin reference as a first parameter"
+          );
+        }
 
-            if(!headTags && !bodyTags) {
-              this.throwError("Provide headTags or bodyTags otherwise this plugin is useless. :(");
+        if (!this.options) {
+          this.throwError("Provide options.");
+        }
+
+        const { headTags, bodyTags } = this.options;
+
+        if (!headTags && !bodyTags) {
+          this.throwError(
+            "Provide headTags or bodyTags otherwise this plugin is useless. :("
+          );
+        }
+
+        this.htmlWebpackPlugin
+          .getHooks(compilation)
+          .alterAssetTagGroups.tapAsync(
+            "HtmlWebpackStaticAssetsPlugin",
+            (data, cb) => {
+              const { assets } = compilation;
+
+              if (headTags) {
+                data.headTags = this.getNewTagArray(
+                  data.headTags,
+                  headTags,
+                  assets
+                );
+              }
+
+              if (bodyTags) {
+                data.bodyTags = this.getNewTagArray(
+                  data.bodyTags,
+                  headTags,
+                  assets
+                );
+              }
+
+              cb(null, data);
             }
-
-            const { assets } = compilation;
-
-            if (headTags) {
-              data.headTags = this.getNewTagArray(data.headTags, headTags, assets);
-            }
-
-            if (bodyTags) {
-              data.bodyTags = this.getNewTagArray(data.bodyTags, headTags, assets);
-            }
-
-            cb(null, data);
-          }
-        );
+          );
       }
     );
   }
 
-  getNewTagArray(currentTagArray, optionsTags, assets){
+  getNewTagArray(currentTagArray, optionsTags, assets) {
     const newTagArray = [...currentTagArray];
 
     for (var filename in assets) {
       optionsTags.forEach(({ test, tagName, ...attributes }) => {
-
-        if(test.constructor !== RegExp) {
+        if (test.constructor !== RegExp) {
           this.throwError("'test' option value needs to be a type of RegExp.");
+        }
+
+        if (!tagName) {
+          this.throwError("'tagName' is required!");
         }
 
         if (test.test(filename)) {
@@ -74,9 +97,7 @@ class HtmlWebpackStaticAssetsPlugin {
             }
           };
 
-
           for (var attribute in attributes) {
-
             if (attribute === "type") {
               attributes[attribute] = attributes[attribute].replace(
                 "[.ext]",
@@ -95,9 +116,5 @@ class HtmlWebpackStaticAssetsPlugin {
     return newTagArray;
   }
 }
-
-const getNewTagArray = (currentTagArray, optionsTags, assets) => {
-
-};
 
 module.exports = HtmlWebpackStaticAssetsPlugin;
