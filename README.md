@@ -8,8 +8,8 @@
   yarn add --dev html-webpack-static-assets-plugin
 ```
 
-This is an extenstion of [HtmlWebpackPlugin](http://webpack.js.org/) (version 4+ required!) that allows you to extend a list of tags (head and body) created by HtmlWebpackPlugin.
-This plugin needs to be added after HtmlWebpackPlugin.
+This is an extenstion of [HtmlWebpackPlugin](http://webpack.js.org/) (version 4+ required!) . It allows you to extend a list of tags (head and body) created by HtmlWebpackPlugin.
+Remeber to add it after HtmlWebpackPlugin.
 
 F.E preload fonts with a hashes in filename.
 
@@ -65,7 +65,7 @@ This will generate a file `index.html`:
 
 <h2 align="center">Single Tag Options</h2>
 
-This is just overview. You are able to add any type of tag attribute.
+It's just an overview. You can add any type of tag attribute.
 
 | name        | type    | Required | Description                                                     |
 | ----------- | ------- | -------- | --------------------------------------------------------------- |
